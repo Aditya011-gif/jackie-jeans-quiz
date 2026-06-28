@@ -1,0 +1,36 @@
+.quizPage {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  padding-top: 40px;
+  padding-bottom: var(--space-xl);
+}
+
+.quizContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--space-xl) 0;
+}
+
+.backLink {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 101;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  transition: color var(--transition-normal);
+  min-height: 44px;
+  min-width: 44px;
+}
+
+.backLink:hover {
+  color: var(--text-primary);
+}

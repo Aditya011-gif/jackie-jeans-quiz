@@ -1,0 +1,707 @@
+/* ===== Quiz Progress ===== */
+.progressContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 0;
+  background: var(--bg-primary);
+}
+
+.progressBar {
+  height: 3px;
+  background: var(--border-subtle);
+  width: 100%;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 0 var(--radius-pill) var(--radius-pill) 0;
+}
+
+.progressText {
+  position: absolute;
+  right: var(--space-md);
+  top: 10px;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+/* ===== Question Card ===== */
+.questionCard {
+  animation: fadeInUp 0.5s ease forwards;
+  padding: var(--space-lg);
+  max-width: 480px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.questionNumber {
+  font-size: 0.75rem;
+  color: var(--accent);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-sm);
+}
+
+.questionTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.3;
+  margin-bottom: var(--space-sm);
+}
+
+.questionSubtitle {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: var(--space-xl);
+}
+
+/* ===== Dropdown Select ===== */
+.dropdownContainer {
+  position: relative;
+  width: 100%;
+}
+
+.dropdown {
+  width: 100%;
+  padding: var(--space-md) var(--space-lg);
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-family: var(--font-primary);
+  appearance: none;
+  cursor: pointer;
+  transition: border-color var(--transition-normal), box-shadow var(--transition-normal);
+  min-height: 56px;
+}
+
+.dropdown:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+  outline: none;
+}
+
+.dropdown option {
+  background: var(--bg-card);
+  color: var(--text-primary);
+}
+
+.dropdownArrow {
+  position: absolute;
+  right: var(--space-md);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-secondary);
+  pointer-events: none;
+  font-size: 0.8rem;
+}
+
+/* ===== Number Input ===== */
+.numberInputContainer {
+  width: 100%;
+}
+
+.numberInput {
+  width: 100%;
+  padding: var(--space-md) var(--space-lg);
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  color: var(--text-primary);
+  font-size: 1.25rem;
+  font-family: var(--font-primary);
+  font-weight: 500;
+  text-align: center;
+  transition: border-color var(--transition-normal), box-shadow var(--transition-normal);
+  min-height: 56px;
+}
+
+.numberInput:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+  outline: none;
+}
+
+.numberInput::placeholder {
+  color: var(--text-placeholder);
+  font-weight: 400;
+  font-size: 0.95rem;
+}
+
+.unitLabel {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: var(--space-sm);
+}
+
+.skipButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  width: 100%;
+  padding: var(--space-md);
+  margin-top: var(--space-md);
+  background: transparent;
+  border: 1.5px dashed var(--border-medium);
+  border-radius: var(--radius-lg);
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-family: var(--font-primary);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+}
+
+.skipButton:hover {
+  border-color: var(--text-secondary);
+  color: var(--text-primary);
+  background: var(--bg-surface);
+}
+
+/* ===== Option Selector ===== */
+.optionsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  width: 100%;
+}
+
+.optionCard {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-lg);
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-family: var(--font-primary);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  min-height: 56px;
+  text-align: left;
+  width: 100%;
+}
+
+.optionCard:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.optionCardSelected {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+
+.optionRadio {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--border-medium);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all var(--transition-normal);
+}
+
+.optionRadioSelected {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
+.optionRadioDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--text-primary);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.optionRadioDotVisible {
+  opacity: 1;
+}
+
+/* ===== Multi Select ===== */
+.multiSelectContainer {
+  width: 100%;
+}
+
+.searchInput {
+  width: 100%;
+  padding: var(--space-md) var(--space-lg);
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  font-family: var(--font-primary);
+  margin-bottom: var(--space-md);
+  transition: border-color var(--transition-normal);
+  min-height: 48px;
+}
+
+.searchInput:focus {
+  border-color: var(--accent);
+  outline: none;
+}
+
+.searchInput::placeholder {
+  color: var(--text-placeholder);
+}
+
+.selectedChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+  min-height: 0;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: 6px 12px;
+  background: var(--accent-soft);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-pill);
+  color: var(--accent-hover);
+  font-size: 0.8rem;
+  font-weight: 500;
+  animation: scaleIn 0.2s ease;
+}
+
+.chipRemove {
+  background: none;
+  border: none;
+  color: var(--accent-hover);
+  cursor: pointer;
+  padding: 0;
+  font-size: 1rem;
+  line-height: 1;
+  min-height: auto;
+  min-width: auto;
+  display: flex;
+  align-items: center;
+}
+
+.brandGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-sm);
+  max-height: 320px;
+  overflow-y: auto;
+  padding-right: var(--space-xs);
+}
+
+.brandOption {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 10px var(--space-md);
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  font-family: var(--font-primary);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  min-height: 44px;
+  text-align: left;
+  width: 100%;
+}
+
+.brandOption:hover {
+  border-color: var(--accent);
+}
+
+.brandOptionSelected {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.brandCheckbox {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  border: 2px solid var(--border-medium);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+  font-size: 0.7rem;
+}
+
+.brandCheckboxChecked {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+
+/* ===== Brand Size Entry ===== */
+.brandSizeList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  width: 100%;
+}
+
+.brandSizeItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  animation: fadeInUp 0.3s ease forwards;
+}
+
+.brandSizeLabel {
+  flex: 1;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.brandSizeSelect {
+  width: 120px;
+  padding: 10px var(--space-md);
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  font-family: var(--font-primary);
+  appearance: none;
+  cursor: pointer;
+  transition: border-color var(--transition-normal);
+  min-height: 44px;
+}
+
+.brandSizeSelect:focus {
+  border-color: var(--accent);
+  outline: none;
+}
+
+/* ===== Navigation Buttons ===== */
+.navContainer {
+  display: flex;
+  gap: var(--space-md);
+  margin-top: var(--space-2xl);
+  width: 100%;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 var(--space-lg);
+}
+
+.btnPrimary {
+  flex: 1;
+  padding: var(--space-md) var(--space-lg);
+  background: var(--accent);
+  border: none;
+  border-radius: var(--radius-pill);
+  color: white;
+  font-size: 1rem;
+  font-family: var(--font-primary);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  min-height: 52px;
+  letter-spacing: 0.01em;
+}
+
+.btnPrimary:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px var(--accent-glow);
+}
+
+.btnPrimary:active {
+  transform: translateY(0);
+}
+
+.btnPrimary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.btnSecondary {
+  padding: var(--space-md) var(--space-lg);
+  background: transparent;
+  border: 1.5px solid var(--border-subtle);
+  border-radius: var(--radius-pill);
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  font-family: var(--font-primary);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  min-height: 52px;
+}
+
+.btnSecondary:hover {
+  border-color: var(--text-secondary);
+  color: var(--text-primary);
+}
+
+/* ===== Voice Orb ===== */
+.orbContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xl);
+}
+
+.orb {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), #3a5a8f, var(--accent-hover));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  transition: all var(--transition-slow);
+}
+
+.orbIdle {
+  animation: orbPulse 3s ease-in-out infinite;
+}
+
+.orbListening {
+  animation: orbListening 1.5s ease-in-out infinite;
+  background: linear-gradient(135deg, #4CAF50, #388E3C, #66BB6A);
+}
+
+.orbSpeaking {
+  animation: orbPulse 2s ease-in-out infinite;
+}
+
+.orbThinking {
+  animation: pulse 1s ease-in-out infinite;
+  opacity: 0.7;
+}
+
+.orbRipple {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  animation: ripple 2s ease-out infinite;
+  pointer-events: none;
+}
+
+.orbRipple:nth-child(2) {
+  animation-delay: 0.5s;
+}
+
+.orbRipple:nth-child(3) {
+  animation-delay: 1s;
+}
+
+.orbIcon {
+  font-size: 3rem;
+  color: white;
+  z-index: 1;
+}
+
+.orbLabel {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ===== Voice Transcript ===== */
+.transcriptContainer {
+  width: 100%;
+  max-width: 480px;
+  padding: 0 var(--space-lg);
+}
+
+.transcriptBubble {
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius-xl);
+  margin-bottom: var(--space-sm);
+  animation: fadeInUp 0.3s ease;
+  max-width: 85%;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.transcriptAI {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  margin-right: auto;
+  border-bottom-left-radius: var(--radius-sm);
+}
+
+.transcriptUser {
+  background: var(--accent-soft);
+  border: 1px solid var(--accent);
+  color: var(--text-primary);
+  margin-left: auto;
+  border-bottom-right-radius: var(--radius-sm);
+}
+
+.transcriptInterim {
+  color: var(--text-muted);
+  font-style: italic;
+  text-align: right;
+  padding: var(--space-sm) var(--space-lg);
+  font-size: 0.85rem;
+}
+
+/* ===== Voice Page ===== */
+.voicePage {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-3xl) var(--space-md) var(--space-xl);
+  gap: var(--space-xl);
+}
+
+.voiceHeader {
+  text-align: center;
+  animation: fadeIn 0.6s ease;
+}
+
+.voiceTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-xs);
+}
+
+.voiceSubtitle {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.voiceControls {
+  display: flex;
+  gap: var(--space-md);
+  margin-top: auto;
+  padding-bottom: var(--space-lg);
+}
+
+.voiceControlBtn {
+  padding: 10px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-pill);
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-family: var(--font-primary);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+}
+
+.voiceControlBtn:hover {
+  border-color: var(--text-secondary);
+  color: var(--text-primary);
+}
+
+/* ===== Error Message ===== */
+.errorMsg {
+  color: var(--error);
+  font-size: 0.8rem;
+  margin-top: var(--space-sm);
+  animation: fadeIn 0.2s ease;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes orbPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 30px var(--accent-glow), 0 0 60px rgba(74, 111, 165, 0.15);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 50px var(--accent-glow), 0 0 100px rgba(74, 111, 165, 0.2);
+  }
+}
+
+@keyframes orbListening {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 40px rgba(76, 175, 80, 0.3), 0 0 80px rgba(76, 175, 80, 0.15);
+  }
+  50% {
+    transform: scale(1.08);
+    box-shadow: 0 0 60px rgba(76, 175, 80, 0.4), 0 0 120px rgba(76, 175, 80, 0.2);
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
