@@ -2,7 +2,13 @@ import { NextResponse } from "next/server";
 
 export async function POST(req) {
   try {
-    const { text, model = "aura-asteria-en" } = await req.json(); // Aura-2 asteria voice
+    let requestBody;
+    try {
+      requestBody = await req.json();
+    } catch (jsonError) {
+      return NextResponse.json({ error: "Invalid JSON in request body" }, { status: 400 });
+    }
+    const { text, model = "aura-asteria-en" } = requestBody; // Aura-2 asteria voice
 
     const apiKey = process.env.DEEPGRAM_API_KEY;
     if (!apiKey) {
